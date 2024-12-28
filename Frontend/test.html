@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Пользователи</h2>
+    <ul id="user-list"></ul>
+    <h1>Форма для отправки данных</h1>
+    <form id="dataForm">
+        <label for="name">name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="password">password</label>
+        <input type="password" id="password" name="password" required><br>
+    </form>
+    <button id="myButton">Отправить запрос</button> 
+    <p id="responseMessage"></p>
+    <script src = "script.js"></script>
+</body>
+</html>

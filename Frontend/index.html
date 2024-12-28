@@ -3,73 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Пользователи</h2>
-    <ul id="user-list"></ul>
-    <h1>Форма для отправки данных</h1>
-    <form id="dataForm">
-        <label for="id">id:</label>
-        <input type="number" id="id" name="id" required><br>
-
-        <label for="name">name:</label>
-        <input type="text" id="name" name="name" required><br>
-
-        <label for="password">password</label>
-        <input type="password" id="password" name="password" required><br>
-    </form>
-    <button id="myButton">Отправить запрос</button> 
-    <p id="responseMessage"></p>
-<script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        try {
-            const response = await fetch('http://localhost:3000/api/users'); 
-            const data = await response.json();
-            console.log('Ответ от сервера:', data);
-            displayUsers(data);
-        } catch (error) {
-            console.error('Ошибка:', error);
-        }
-});
-
-    function displayUsers(users) {
-            const userList = document.getElementById('user-list');
-            userList.innerHTML = ''; // Очищаем список перед добавлением новых данных
-
-            users.forEach(user => {
-                const li = document.createElement('li');
-                li.textContent = `ID: ${user.id}, Имя: ${user.name}, password: ${user.password}`;
-                userList.appendChild(li);
-            });
-        };
-
-        
-    document.getElementById('myButton').addEventListener('click', async () => {
-        const formData = {
-                id: parseInt(document.getElementById('id').value, 10),
-                name: document.getElementById('name').value,
-                password: document.getElementById('password').value
-            };
-            try {
-                const response = await fetch('http://localhost:3000/api/registration', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Ошибка сервера: ' + response.status);
-                }
-
-                const result = await response.json();
-                document.getElementById('responseMessage').textContent = result.message;
-            } catch (error) {
-                console.error('Ошибка:', error);
-                document.getElementById('responseMessage').textContent = 'Произошла ошибка при отправке данных';
-            }
-    })
-</script>
+    
+    <script src = "script.js"></script>
 </body>
 </html>

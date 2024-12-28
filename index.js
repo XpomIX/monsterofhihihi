@@ -30,12 +30,29 @@ app.get('/api/users', async (req, res) => {
     res.status(500).send('Ошибка сервера');
   }
 });
+
 // Эндпоинт который высрал
 app.post('/api/registration', async (req, res) => {
   const { name, password } = req.body;
   try {
     const result = await prisma.user.create({
       data: {
+        name,
+        password,
+      }
+    });
+    res.status(201).json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Ошибка сервера');
+  }
+});
+
+app.post('/api/login', async (req, res) => {
+  const { name, password } = req.body;
+  try {
+    const result = await prisma.user.findUnique({
+      where: {
         name,
         password,
       }
