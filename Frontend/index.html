@@ -6,7 +6,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="main">
+        <form class = "login">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
     
-    <script src = "script.js"></script>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required placeholder="Введите пароль">
+
+            <input id = 'button_login' type="submit" value="Отправить">
+        </form>
+    </div>
+    <script src = "login.js"></script>
 </body>
 </html>
