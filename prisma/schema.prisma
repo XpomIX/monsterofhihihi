@@ -14,8 +14,18 @@ datasource db {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
   password  String
   createdAt DateTime @default(now())
+  stories   Story[]  // Связь один-ко-многим
+}
+
+model Story {
+  id        Int    @id @default(autoincrement())
+  StoryId    Int
+  question  String?
+  answer    String?
+  userId    Int    // Внешний ключ
+  user      User   @relation(fields: [userId], references: [id]) // Определение связи
 }
