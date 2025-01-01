@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
          //http://85.15.179.144:3000/api/registration
+        event.preventDefault();
         const response = await fetch('http://localhost:3000/api/users', { mode: 'cors' }); 
         const data = await response.json();
         console.log('Ответ от сервера:', data);
