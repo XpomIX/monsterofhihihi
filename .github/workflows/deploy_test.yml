@@ -12,17 +12,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          persist-credentials: false # Иначе ключи SSH не будут работать
+          persist-credentials: false
+
+      - name: Start SSH Agent
+        uses: webfactory/ssh-agent@v0.5.2
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Copy files via SSH
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }} # IP-адрес или имя хоста сервера
-          username: ${{ secrets.SSH_USERNAME }} # Имя пользователя на сервере
-          key: ${{ secrets.SSH_PRIVATE_KEY }} # Приватный SSH ключ
-          port: ${{ secrets.SSH_PORT }} # Порт SSH (по умолчанию 22)
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }} # Этот параметр больше не нужен, но оставьте его для совместимости
+          port: ${{ secrets.SSH_PORT }} # Укажите порт, если он отличается от 22
           script: |
-            # Команды для выполнения на сервере
             echo "Deploying..."
             rsync -avz --exclude=.git ./ <путь_на_сервере>
-
