@@ -1,0 +1,28 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main # Замените на вашу ветку
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false # Иначе ключи SSH не будут работать
+
+      - name: Copy files via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }} # IP-адрес или имя хоста сервера
+          username: ${{ secrets.SSH_USERNAME }} # Имя пользователя на сервере
+          key: ${{ secrets.SSH_PRIVATE_KEY }} # Приватный SSH ключ
+          port: ${{ secrets.SSH_PORT }} # Порт SSH (по умолчанию 22)
+          script: |
+            # Команды для выполнения на сервере
+            echo "Deploying..."
+            rsync -avz --exclude=.git ./ <путь_на_сервере>
+
