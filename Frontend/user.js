@@ -7,7 +7,7 @@
             userId: parseInt(id, 10),
         };
         //http://85.15.179.144:3000/api/login
-        const response = await fetch('http://localhost:3000/api/getlaststory', {
+        const response = await fetch('/api/getlaststory', {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -32,7 +32,7 @@ document.getElementById('button').addEventListener('click', async () => {
         console.log(formData)
         try {
             //http://85.15.179.144:3000/api/login
-            const response = await fetch('http://localhost:3000/api/answerstory', {
+            const response = await fetch('/api/answerstory', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
