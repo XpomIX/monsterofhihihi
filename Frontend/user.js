@@ -43,4 +43,4 @@ document.getElementById('button').addEventListener('click', async () => {
         } catch (error) {
             console.error('Ошибка:', error);
         }
-})       
+})
