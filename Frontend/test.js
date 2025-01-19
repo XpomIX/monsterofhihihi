@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
          //http://85.15.179.144:3000/api/registration
+        event.preventDefault();
         const response = await fetch('http://localhost:3000/api/users', { mode: 'cors' }); 
         const data = await response.json();
         console.log('Ответ от сервера:', data);
@@ -40,7 +41,7 @@ document.getElementById('myButton').addEventListener('click', async () => {
             if (!response.ok) {
                 throw new Error('Ошибка сервера: ' + response.status);
             }
-
+            
             const result = await response.json();
             document.getElementById('responseMessage').textContent = result.message;
         } catch (error) {
