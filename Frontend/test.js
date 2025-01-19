@@ -41,7 +41,7 @@ document.getElementById('myButton').addEventListener('click', async () => {
             if (!response.ok) {
                 throw new Error('Ошибка сервера: ' + response.status);
             }
-
+            
             const result = await response.json();
             document.getElementById('responseMessage').textContent = result.message;
         } catch (error) {

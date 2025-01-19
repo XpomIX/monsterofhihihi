@@ -16,14 +16,17 @@ document.getElementById('button_login').addEventListener('click', async () => {
                 },
                 body: JSON.stringify(formData)
             });
-            const result = await response.json();
-            console.log(result.name);
-            sessionStorage.setItem('name',result.name);
-            sessionStorage.setItem('password',result.password);
-            if (result != null){
-                window.location.href = 'story.html'
+            const id = await response.json();
+            console.log(id);
+            if (id != null){
+                if (id == 1){
+                    window.location.href = './admin.html';
+                }
+                else {
+                window.location.href = './user.html?id=' + id;
+                }
         };
         } catch (error) {
             console.error('Ошибка:', error);
         }
-})   
+})       

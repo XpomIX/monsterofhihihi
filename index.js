@@ -22,7 +22,6 @@ app.get('/', (req, res) => {
 // Пример запроса к базе данных
 app.get('/api/users', async (req, res) => {
   try {
-    console.log(12);
     const result = await prisma.user.findMany();
     console.log(result);
     res.json(result);
@@ -32,17 +31,17 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
-app.post('/api/user', async (req, res) => {
-  const { id } = req.body;
+
+app.get('/api/user', async (req, res) => {
+  const { id } = req.query;
   try {
     const result = await prisma.user.findUnique({
       where: {
-        id
+        id: parseInt(id)
       },
-      include: { Story: true }
+      include: { stories: { select: { id: true } } },
     });
-    console.log(result);
-    res.status(201).json(result);
+    res.status(200).json(result);
   } catch (err) {
     console.error(err);
     res.status(500).send('Ошибка сервера');
@@ -50,7 +49,6 @@ app.post('/api/user', async (req, res) => {
 });
 
 
-// Эндпоинт который высрал
 app.post('/api/registration', async (req, res) => {
   const { name, password } = req.body;
   try {
@@ -68,12 +66,37 @@ app.post('/api/registration', async (req, res) => {
 });
 
 
+app.post('/api/updatestory', async (req, res) => {
+  const { userId, question } = req.body;
+
+  try {
+    const lastStory = await prisma.Story.findFirst({
+      where: { userId: userId },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    if (!lastStory) {
+      return res.status(404).send('Запись не найдена');
+    }
+
+    const result = await prisma.Story.update({
+      where: { id: lastStory.id },
+      data: { question: question },
+    });
+
+    res.status(200).json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Ошибка сервера');
+  }
+});
+
+
 app.post('/api/newstory', async (req, res) => {
-  const { StoryId, question, userId} = req.body;
+  const { question, userId} = req.body;
   try {
     const result = await prisma.Story.create({
       data: {
-        StoryId,
         question,
         userId,
       }
@@ -87,47 +110,39 @@ app.post('/api/newstory', async (req, res) => {
 
 
 app.post('/api/answerstory', async (req, res) => {
-  const { StoryId, answer, userId} = req.body;
+  const { userId, answer } = req.body;
+
   try {
-    const result = await prisma.Story.create({
-      data: {
-        StoryId,
-        answer,
-        userId,
-      }
+    const lastStory = await prisma.Story.findFirst({
+      where: { userId: userId },
+      orderBy: { createdAt: 'desc' },
     });
-    res.status(201).json(result);
+
+    if (!lastStory) {
+      return res.status(404).send('Запись не найдена');
+    }
+
+    const result = await prisma.Story.update({
+      where: { id: lastStory.id },
+      data: { answer: answer },
+    });
+
+    res.status(200).json(result);
   } catch (err) {
     console.error(err);
     res.status(500).send('Ошибка сервера');
   }
 });
 
-
-app.post('/api/showstory', async (req, res) => {
-  const { userId, StoryId } = req.body;
-  try {
-    const result = await prisma.user.findUnique({
-      where: {
-        userId,
-        StoryId,
-      }
-    });
-    res.status(201).json(result);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Ошибка сервера');
-  }
-});
 
 app.post('/api/getlaststory', async (req, res) => {
   const {userId} = req.body;
   try {
     const lastStory = await prisma.Story.findFirst({
       where: { userId: userId },
-      orderBy: { StoryId: 'desc' }, // Сортируем по убыванию StoryId
+      orderBy: { createdAt: 'desc' }, 
     });
-
+    res.status(200).json(lastStory);
     console.log(lastStory.question);
   } catch (err) {
     console.error(err);
@@ -139,13 +154,13 @@ app.post('/api/getlaststory', async (req, res) => {
 app.post('/api/login', async (req, res) => {
   const { name, password } = req.body;
   try {
-    const result = await prisma.user.findUnique({
+    const { id } = await prisma.user.findUniqueOrThrow({
       where: {
         name,
         password,
       }
     });
-    res.status(201).json(result);
+    res.status(200).json(id);
   } catch (err) {
     console.error(err);
     res.status(500).send('Ошибка сервера');
