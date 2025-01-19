@@ -19,7 +19,5 @@ RUN npx prisma generate
 # Открываем порт для доступа к приложению
 EXPOSE 3000
 
-RUN npx prisma migrate deploy
-
 # Команда для запуска приложения
 CMD ["npm", "start"]
