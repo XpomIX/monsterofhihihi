@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
          //http://85.15.179.144:3000/api/registration
         event.preventDefault();
-        const response = await fetch('http://localhost:3000/api/users', { mode: 'cors' }); 
+        const response = await fetch('/api/users', { mode: 'cors' }); 
         const data = await response.json();
         console.log('Ответ от сервера:', data);
         displayUsers(data);
@@ -29,7 +29,7 @@ document.getElementById('myButton').addEventListener('click', async () => {
         };
         try {
             //http://85.15.179.144:3000/api/registration
-            const response = await fetch('http://localhost:3000/api/registration', {
+            const response = await fetch('/api/registration', {
                 method: 'POST',
                 mode: 'cors', 
                 headers: {
