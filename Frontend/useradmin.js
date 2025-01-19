@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             userId: parseInt(id, 10),
         };
         //http://85.15.179.144:3000/api/login
-        const response = await fetch('http://localhost:3000/api/getlaststory', {
+        const response = await fetch('/api/getlaststory', {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -34,7 +34,7 @@ document.getElementById('button').addEventListener('click', async () => {
         console.log(formData)
         try {
             //http://85.15.179.144:3000/api/login
-            const response = await fetch('http://localhost:3000/api/updatestory', {
+            const response = await fetch('/api/updatestory', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -56,7 +56,7 @@ document.getElementById('button_new_story').addEventListener('click', async () =
         console.log(formData)
         try {
             //http://85.15.179.144:3000/api/login
-            const response = await fetch('http://localhost:3000/api/newstory', {
+            const response = await fetch('/api/newstory', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {

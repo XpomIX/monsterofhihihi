@@ -8,7 +8,7 @@ document.getElementById('button_login').addEventListener('click', async () => {
 
         try {
             //http://85.15.179.144:3000/api/login
-            const response = await fetch('http://localhost:3000/api/login', {
+            const response = await fetch('/api/login', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {

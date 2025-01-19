@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     event.preventDefault();
     try {
         //http://85.15.179.144:3000/api/login
-        const response = await fetch('http://localhost:3000/api/users', {
+        const response = await fetch('/api/users', {
             method: 'GET',
             mode: 'cors',
             headers: {
