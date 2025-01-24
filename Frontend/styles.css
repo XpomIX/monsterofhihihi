@@ -1,5 +1,14 @@
+@font-face {
+	font-family: 'CourierWGL'; 
+	src: url(/fonts/Courier10WGL4BT.ttf); 
+}
 body{
     margin: 0;
+    background-image: url('./images/firewatch.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(54, 54, 54);
 }
 .main{
     display: flex;
@@ -15,3 +24,95 @@ body{
     flex-direction: column;
     align-items: flex-start;
 }
+textarea {
+    resize: none;
+    width: 800px;
+    height: 300px;
+    font-family: "CourierWGL";
+    font-size: 18px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    border-color: rgb(17, 17, 36);
+    border: 1px;
+    padding: 10px;
+    background-color: rgb(48, 48, 105);
+  }
+.main_for_users{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "CourierWGL    ";
+    font-size: 18px;
+    height: 100vh;
+}
+.main_for_adminusers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "CourierWGL";
+    font-size: 18px;
+}
+.text_block{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    width: 800px;
+    height: 300px;
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+.text_in_p{
+    color: rgb(214, 214, 214);
+}
+button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    width: 240px;
+    font-family: "CourierWGL";
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: rgb(142, 173, 230);
+}
+.button_log{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    width: 240px;
+    font-family: "CourierWGL";
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: rgb(142, 173, 230);
+}
+label{
+    font-family: "CourierWGL";
+    font-size: 20px;
+    margin: 3px;
+    color: white;
+}
+.nigger{
+    font-family: "CourierWGL";
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    border-color: rgb(17, 17, 36);
+    border: 5px;
+    background-color: rgb(181, 181, 211);
+    height: 25px;
+    width: 235px;
+    font-size: 20px;
+}
+@media screen and (max-width: 980px) {
+    .text_block{
+        width: 300px;
+        height: 400px;
+        font-size: 14px;
+    }
+    textarea{
+        width: 300px;
+        height: 400px;
+        font-size: 14px;
+    }
+ }

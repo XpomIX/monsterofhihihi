@@ -6,11 +6,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <textarea id="story_men" name="message" rows="20" cols="100"></textarea>
-    <p id = "otvetik"></p>
-    <button id="button">Бляяяять</button>
-    <textarea id="new_question" name="message" rows="20" cols="100"></textarea>
-    <button id="button_new_story">Сделать новый вопрос</button>
+    <div class = "main_for_adminusers">
+        <textarea id="story_men" name="message"></textarea>
+        <div class = "text_block">
+            <p class = "text_in_p" id = "otvetik"></p>
+        </div>
+        <button id="button">Отправить</button>
+        <textarea id="new_question" name="message" rows="20" cols="100"></textarea>
+        <button id="button_new_story">Сделать новый вопрос</button>
+    </div>
     <script src = "useradmin.js"></script>
 </body>
 </html>
